@@ -1,0 +1,27 @@
+<h1>All Companies</h1>
+
+<% if @companies.length > 0 %>
+	<p>
+	Below is a list of companies in Consolidator. Select a company
+	to view its subsidiaries and demographics.
+	</p> 
+
+	<table> 
+	  <% @companies.each do |company| %>
+	    <tr>
+	      <td><%= link_to company.name, company_path(company) %></td>
+	      <% if company.companies.length > 0 %>
+	      	<td>(<%= pluralize(company.companies.length, "subsidiary") %>)</td>
+	      <% end %>
+	    </tr>
+	  <% end %>
+	</table>
+<% else %>
+	<p>
+	No companies available.
+	</p>
+<% end %>
+
+<p>
+  <%= link_to 'Add Company', new_company_path %>
+</p>

@@ -1,0 +1,75 @@
+<p>
+  <%= link_to 'All Companies', companies_path %> > <%= @company.name%>
+</p>
+
+<% if @company.companies.length > 0 %>
+	<p>
+  		<h2><%= @company.name %>'s consolidated demographics</h2>
+	</p>
+
+	<table>     
+      <tr>
+        <td></td>
+        <td>Black</td>
+        <td>White</td>
+      </tr>
+      <tr>
+        <td>Males</td>
+        <td><%= @company.black_male %></td>
+        <td><%= @company.white_male %></td>
+      </tr>
+      <tr>
+        <td>Females</td>
+        <td><%= @company.black_female %></td>
+        <td><%= @company.white_female %></td>       
+      </tr>     
+  </table>
+
+	<p>
+	  Immediate Subsidiaries
+	</p>
+	<table> 
+	  <% @company.companies.each do |company| %>
+	    <tr>
+	      <td><%= link_to company.name, company_path(company) %></td>
+	    </tr>
+	  <% end %>
+	</table>
+<% else %>
+	<p>
+	  <h2><%= @company.name %>'s demographics</h2>
+	</p>
+
+	<table>     
+      <tr>
+        <td></td>
+        <td>Black</td>
+        <td>White</td>
+      </tr>
+      <tr>
+        <td>Males</td>
+        <td><%= @company.black_male %></td>
+        <td><%= @company.white_male %></td>
+      </tr>
+      <tr>
+        <td>Females</td>
+        <td><%= @company.black_female %></td>
+        <td><%= @company.white_female %></td>       
+      </tr>     
+  	</table>
+
+	<p>No immediate subsidiaries.</p>
+<% end %>
+
+<%= form_for([@company, @company.companies.build]) do |f| %>
+  	<table> 	  
+	    <tr>
+	      <td><%= f.text_area :name %></td>
+	      <td><%= f.hidden_field :id %></td>
+	    </tr>
+	    <tr>
+	      <td><%= f.submit 'Add Immediate Subsidiary' %></td>
+	      <td><%= link_to 'Save Inclusion Settings', edit_company_path(@company) %></td>
+		</tr>	  
+	</table>
+<% end %>

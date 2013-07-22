@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyText
+  white_male: 1
+  white_female: 1
+  black_male: 1
+  black_female: 1
+  company_id: 
+
+two:
+  name: MyText
+  white_male: 1
+  white_female: 1
+  black_male: 1
+  black_female: 1
+  company_id: 
